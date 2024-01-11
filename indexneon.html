@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Glowing Text Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d0d0d;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        label {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        #text-input {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 2px solid #00bcd4;
+            border-radius: 5px;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+            width: 300px;
+        }
+
+        #text-input:focus {
+            border-color: #00e5ff;
+        }
+
+        #text-size {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        #text-size-select {
+            font-size: 1em;
+            padding: 8px;
+            border: 2px solid #00bcd4;
+            border-radius: 5px;
+            background-color: #000;
+            color: #fff;
+            outline: none;
+            cursor: pointer;
+        }
+
+        #neon-text {
+            font-size: 2em;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #color-options {
+            margin-top: 20px;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            border: 2px solid #fff;
+        }
+
+        #shadow-color-options {
+            margin-top: 10px;
+        }
+
+        .shadow-color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <label for="text-input">Enter neon text:</label>
+    <input type="text" id="text-input" placeholder="Type neon text here" oninput="updateNeonText()">
+
+    <label for="text-size">Select text size:</label>
+    <select id="text-size-select" onchange="updateNeonTextSize()">
+        <option value="1.5em">Small</option>
+        <option value="2em" selected>Medium</option>
+        <option value="2.5em">Large</option>
+    </select>
+
+    <div id="color-options" class="flex">
+        <label for="text-color">Select text color:</label>
+        <div class="flex">
+            <div class="color-option" style="background-color: #00bcd4;" onclick="updateTextColor('#00bcd4')"></div>
+            <div class="color-option" style="background-color: #ff4081;" onclick="updateTextColor('#ff4081')"></div>
+            <div class="color-option" style="background-color: #8bc34a;" onclick="updateTextColor('#8bc34a')"></div>
+            <div class="color-option" style="background-color: #ffeb3b;" onclick="updateTextColor('#ffeb3b')"></div>
+        </div>
+    </div>
+
+    <div id="shadow-color-options" class="flex">
+        <label for="shadow-color">Select shadow color:</label>
+        <div class="flex">
+            <div class="shadow-color-option" style="background-color: #fff;" onclick="updateShadowColor('#fff')"></div>
+            <div class="shadow-color-option" style="background-color: #00bcd4;" onclick="updateShadowColor('#00bcd4')"></div>
+            <div class="shadow-color-option" style="background-color: #ff4081;" onclick="updateShadowColor('#ff4081')"></div>
+            <div class="shadow-color-option" style="background-color: #8bc34a;" onclick="updateShadowColor('#8bc34a')"></div>
+        </div>
+    </div>
+
+    <div id="neon-text"></div>
+
+    <script>
+        function updateNeonText() {
+            const inputText = document.getElementById('text-input').value;
+            const neonText = document.getElementById('neon-text');
+            neonText.textContent = inputText;
+        }
+
+        function updateNeonTextSize() {
+            const textSize = document.getElementById('text-size-select').value;
+            const neonText = document.getElementById('neon-text');
+            neonText.style.fontSize = textSize;
+        }
+
+        function updateTextColor(color) {
+            const neonText = document.getElementById('neon-text');
+            neonText.style.color = color;
+        }
+
+        function updateShadowColor(color) {
+            const neonText = document.getElementById('neon-text');
+            neonText.style.textShadow = `0 0 10px ${color}, 0 0 20px ${color}, 0 0 30px ${color}`;
+        }
+    </script>
+</body>
+</html>
